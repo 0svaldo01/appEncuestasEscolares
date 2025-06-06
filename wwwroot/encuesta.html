@@ -1,180 +1,554 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Encuesta</title>
-  <style>
-    *{
-        background-color: #E6ECF0   ;
-    }
-    input[type="radio"] {
-      display: none;
-    }
+    <meta charset="UTF-8">
+    <title>Encuesta</title>
+    <link rel="stylesheet" href="estiloEncuesta.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    label img {
-      width: 50px;
-      cursor: pointer;
-      opacity: 0.5;
-      transition: 0.2s;
-    }
+    <!--<style>
+        * {
+            background-color: #E6ECF0;
+        }
 
-    input[type="radio"]:checked + img {
-      opacity: 1;
-    
-      border-radius: 10px;
-    }
-  </style>
+        input[type="radio"] {
+            display: none;
+        }
+
+        label img {
+            width: 50px;
+            cursor: pointer;
+            opacity: 0.5;
+            transition: 0.2s;
+        }
+
+        input[type="radio"]:checked + img {
+            opacity: 1;
+            border-radius: 10px;
+        }
+    </style>-->
 </head>
 <body>
 
-<h1>Encuesta sobre la escuela</h1>
-<form>
-    <p>Escribe tu nombre y numero de control</p><br>
-    <input type="text" placeholder="Nombre"> <input type="text" placeholder="Numero de control">
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-brand">
+                <i class="fas fa-poll brand-icon"></i>
+                <h1 class="brand-title">Encuestas ITESRC</h1>
+            </div>
+            <nav class="nav-menu">
+                <a href="#dashboard" class="nav-link active">
+                    <i class="fas fa-chart-bar"></i>
+                    Panel
+                </a>
+                <a href="#create" class="nav-link">
+                    <i class="fas fa-plus-circle"></i>
+                    Crear Encuesta
+                </a>
+                <a href="#apply" class="nav-link">
+                    <i class="fas fa-mobile-alt"></i>
+                    Aplicar Encuesta
+                </a>
+                <div class="user-menu">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Usuario</span>
+                </div>
+            </nav>
+        </div>
+    </header>
 
-<div class="preg">
-    <p>¿Qué tanto te agrada la comida de la cafetería?</p>
+    <!-- contenido principal -->
+    <main class="main-content">
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="content-section active">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Panel de Control</h2>
+                    <p class="section-subtitle">Monitorea el estado de tus encuestas en tiempo real</p>
+                </div>
 
-    <label>
-      <input type="radio" name="pregunta" value="1">
-      <img src="./assets/1-removebg-preview.png" alt="1">
-    </label>
+                <!-- estados -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-poll-h"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 class="stat-number">12</h3>
+                            <p class="stat-label">Encuestas Activas</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 class="stat-number">348</h3>
+                            <p class="stat-label">Respuestas Totales</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-user-check"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 class="stat-number">6</h3>
+                            <p class="stat-label">Encuestadores Activos</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 class="stat-number">225</h3>
+                            <p class="stat-label">Estudiantes Participantes</p>
+                        </div>
+                    </div>
+                </div>
 
-    <label>
-      <input type="radio" name="pregunta" value="2">
-      <img src="./assets/2-removebg-preview.png" alt="2">
-    </label>
+                <!-- Encuestas mas recientes-->
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3 class="card-title">Encuestas Recientes</h3>
+                            <button class="btn btn-link">Ver todas</button>
+                        </div>
+                        <div class="survey-list">
+                            <div class="survey-item">
+                                <div class="survey-info">
+                                    <h4 class="survey-name">Satisfacción Cafetería</h4>
+                                    <p class="survey-meta">Creada: 2 días • 45 respuestas</p>
+                                </div>
+                                <div class="survey-status">
+                                    <span class="status-badge active">Activa</span>
+                                    <button class="btn-action">
+                                        <i class="fas fa-chart-pie"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="survey-item">
+                                <div class="survey-info">
+                                    <h4 class="survey-name">Limpieza Instalaciones</h4>
+                                    <p class="survey-meta">Creada: 5 días • 78 respuestas</p>
+                                </div>
+                                <div class="survey-status">
+                                    <span class="status-badge active">Activa</span>
+                                    <button class="btn-action">
+                                        <i class="fas fa-chart-pie"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="survey-item">
+                                <div class="survey-info">
+                                    <h4 class="survey-name">Calidad Biblioteca</h4>
+                                    <p class="survey-meta">Creada: 1 semana • 92 respuestas</p>
+                                </div>
+                                <div class="survey-status">
+                                    <span class="status-badge completed">Finalizada</span>
+                                    <button class="btn-action">
+                                        <i class="fas fa-chart-pie"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-    <label>
-      <input type="radio" name="pregunta" value="3">
-      <img src="./assets/3-removebg-preview.png" alt="3">
-    </label>
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3 class="card-title">Actividad en Tiempo Real</h3>
+                            <div class="live-indicator">
+                                <span class="live-dot"></span>
+                                En vivo
+                            </div>
+                        </div>
+                        <div class="activity-feed">
+                            <div class="activity-item">
+                                <div class="activity-icon">
+                                    <i class="fas fa-user-plus"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <p>Nueva respuesta en <strong>Satisfacción Cafetería</strong></p>
+                                    <span class="activity-time">Hace 2 minutos</span>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon">
+                                    <i class="fas fa-play"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <p>María González inició aplicación de encuesta</p>
+                                    <span class="activity-time">Hace 5 minutos</span>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon">
+                                    <i class="fas fa-plus"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <p>Nueva encuesta creada: <strong>Evaluación Deportes</strong></p>
+                                    <span class="activity-time">Hace 15 minutos</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <label>
-      <input type="radio" name="pregunta" value="4">
-      <img src="./assets/4-removebg-preview.png" alt="4">
-    </label>
+        <!-- crear nueva encuesta -->
+        <section id="create" class="content-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Crear Nueva Encuesta</h2>
+                    <p class="section-subtitle">Diseña una encuesta personalizada para tu institución</p>
+                </div>
 
-    <label>
-      <input type="radio" name="pregunta" value="5">
-      <img src="./assets/5-removebg-preview.png" alt="5">
-    </label>
-  </div>
-  <div class="preg">
-    <p>¿Qué tanto te agrada la comida de la cafetería?</p>
+                <div class="form-container">
+                    <form class="survey-form">
+                        <div class="form-group">
+                            <label for="survey-name" class="form-label">Nombre de la Encuesta</label>
+                            <input type="text" id="survey-name" class="form-input" placeholder="Ej: Satisfacción con la Cafetería">
+                        </div>
 
-    <label>
-      <input type="radio" name="pregunta2" value="1">
-      <img src="./assets/1-removebg-preview.png" alt="1">
-    </label>
+                        <div class="form-group">
+                            <label for="survey-description" class="form-label">Descripción</label>
+                            <textarea id="survey-description" class="form-textarea" placeholder="Describe el objetivo de esta encuesta..."></textarea>
+                        </div>
 
-    <label>
-      <input type="radio" name="pregunta2" value="2">
-      <img src="./assets/2-removebg-preview.png" alt="2">
-    </label>
+                        <div class="questions-section">
+                            <div class="section-header-inline">
+                                <h3 class="subsection-title">Preguntas</h3>
+                                <button type="button" class="btn btn-secondary add-question-btn">
+                                    <i class="fas fa-plus"></i>
+                                    Agregar Pregunta
+                                </button>
+                            </div>
 
-    <label>
-      <input type="radio" name="pregunta2" value="3">
-      <img src="./assets/3-removebg-preview.png" alt="3">
-    </label>
+                            <div class="question-list">
+                                <div class="question-item">
+                                    <div class="question-header">
+                                        <span class="question-number">1</span>
+                                        <button type="button" class="btn-remove">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                    <input type="text" class="form-input" placeholder="Escribe tu pregunta aquí...">
+                                    <div class="rating-preview">
+                                        <span class="rating-label">Escala de evaluación:</span>
+                                        <div class="rating-scale">
+                                            <span>1</span>
+                                            <span>2</span>
+                                            <span>3</span>
+                                            <span>4</span>
+                                            <span>5</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-    <label>
-      <input type="radio" name="pregunta2" value="4">
-      <img src="./assets/4-removebg-preview.png" alt="4">
-    </label>
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary">Guardar como Borrador</button>
+                            <button type="submit" class="btn btn-primary">Crear Encuesta</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
 
-    <label>
-      <input type="radio" name="pregunta2" value="5">
-      <img src="./assets/5-removebg-preview.png" alt="5">
-    </label>
-  </div>
-   <div class="preg">
-    <p>¿Qué tanto te agrada la comida de la cafetería?</p>
+        <!-- aplicar la encuesta -->
+        <section id="apply" class="content-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Aplicar Encuesta</h2>
+                    <p class="section-subtitle">Selecciona una encuesta y comienza a recopilar respuestas</p>
+                </div>
 
-    <label>
-      <input type="radio" name="pregunta3" value="1">
-      <img src="./assets/1-removebg-preview.png" alt="1">
-    </label>
+                <div class="apply-grid">
+                    <div class="survey-selection">
+                        <h3 class="subsection-title">Seleccionar Encuesta</h3>
+                        <div class="survey-cards">
+                            <div class="survey-card">
+                                <div class="survey-card-header">
+                                    <h4>Satisfacción Cafetería</h4>
+                                    <span class="question-count">5 preguntas</span>
+                                </div>
+                                <p class="survey-description">Evalúa la calidad del servicio de cafetería</p>
+                                <div class="survey-stats">
+                                    <span><i class="fas fa-users"></i> 45 respuestas</span>
+                                    <span><i class="fas fa-clock"></i> ~3 min</span>
+                                </div>
+                                <button class="btn btn-primary btn-select">Seleccionar</button>
+                            </div>
 
-    <label>
-      <input type="radio" name="pregunta3" value="2">
-      <img src="./assets/2-removebg-preview.png" alt="2">
-    </label>
+                            <div class="survey-card">
+                                <div class="survey-card-header">
+                                    <h4>Limpieza Instalaciones</h4>
+                                    <span class="question-count">7 preguntas</span>
+                                </div>
+                                <p class="survey-description">Evalúa la limpieza de diferentes áreas del campus</p>
+                                <div class="survey-stats">
+                                    <span><i class="fas fa-users"></i> 78 respuestas</span>
+                                    <span><i class="fas fa-clock"></i> ~4 min</span>
+                                </div>
+                                <button class="btn btn-primary btn-select">Seleccionar</button>
+                            </div>
+                        </div>
+                    </div>
 
-    <label>
-      <input type="radio" name="pregunta3" value="3">
-      <img src="./assets/3-removebg-preview.png" alt="3">
-    </label>
+                    <div class="mobile-preview">
+                        <div class="phone-mockup">
+                            <div class="phone-screen">
+                                <div class="app-header">
+                                    <h3>Encuesta: Satisfacción Cafetería</h3>
+                                </div>
+                                <div class="student-form">
+                                    <div class="form-group">
+                                        <label>Nombre del Estudiante</label>
+                                        <input type="text" placeholder="Ingresa tu nombre completo">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Número de Control</label>
+                                        <input type="text" placeholder="Ej: 20231234">
+                                    </div>
+                                    <button class="btn btn-primary btn-start">Comenzar Encuesta</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-    <label>
-      <input type="radio" name="pregunta3" value="4">
-      <img src="./assets/4-removebg-preview.png" alt="4">
-    </label>
+    <script>
+        // funcionabilidad
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
 
-    <label>
-      <input type="radio" name="pregunta3" value="5">
-      <img src="./assets/5-removebg-preview.png" alt="5">
-    </label>
-  </div>
-   <div class="preg">
-    <p>¿Qué tanto te agrada la comida de la cafetería?</p>
+                // Remove active class from all links and sections
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
 
-    <label>
-      <input type="radio" name="pregunta4" value="1">
-      <img src="./assets/1-removebg-preview.png" alt="1">
-    </label>
+                // Add active class to clicked link
+                link.classList.add('active');
 
-    <label>
-      <input type="radio" name="pregunta4" value="2">
-      <img src="./assets/2-removebg-preview.png" alt="2">
-    </label>
+                // Show corresponding section
+                const target = link.getAttribute('href').substring(1);
+                document.getElementById(target).classList.add('active');
+            });
+        });
 
-    <label>
-      <input type="radio" name="pregunta4" value="3">
-      <img src="./assets/3-removebg-preview.png" alt="3">
-    </label>
+        // añadir nueva encuesta funcion
+        document.querySelector('.add-question-btn')?.addEventListener('click', () => {
+            const questionList = document.querySelector('.question-list');
+            const questionCount = questionList.children.length + 1;
 
-    <label>
-      <input type="radio" name="pregunta4" value="4">
-      <img src="./assets/4-removebg-preview.png" alt="4">
-    </label>
+            const questionHTML = `
+               <div class="question-item">
+                   <div class="question-header">
+                       <span class="question-number">${questionCount}</span>
+                       <button type="button" class="btn-remove">
+                           <i class="fas fa-times"></i>
+                       </button>
+                   </div>
+                   <input type="text" class="form-input" placeholder="Escribe tu pregunta aquí...">
+                   <div class="rating-preview">
+                       <span class="rating-label">Escala de evaluación:</span>
+                       <div class="rating-scale">
+                           <span>1</span>
+                           <span>2</span>
+                           <span>3</span>
+                           <span>4</span>
+                           <span>5</span>
+                       </div>
+                   </div>
+               </div>
+           `;
 
-    <label>
-      <input type="radio" name="pregunta4" value="5">
-      <img src="./assets/5-removebg-preview.png" alt="5">
-    </label>
-  </div>
-   <div class="preg">
-    <p>¿Qué tanto te agrada la comida de la cafetería?</p>
+            questionList.insertAdjacentHTML('beforeend', questionHTML);
+        });
 
-    <label>
-      <input type="radio" name="pregunta5" value="1">
-      <img src="./assets/1-removebg-preview.png" alt="1">
-    </label>
+        // eliminar encuesta funcion
+        document.addEventListener('click', (e) => {
+            if (e.target.closest('.btn-remove')) {
+                e.target.closest('.question-item').remove();
+                // Update question numbers
+                document.querySelectorAll('.question-number').forEach((num, index) => {
+                    num.textContent = index + 1;
+                });
+            }
+        });
 
-    <label>
-      <input type="radio" name="pregunta5" value="2">
-      <img src="./assets/2-removebg-preview.png" alt="2">
-    </label>
+        // simular actualizaciones en tiempo real
+        setInterval(() => {
+            const statNumbers = document.querySelectorAll('.stat-number');
+            if (statNumbers.length > 1) {
+                const responsesEl = statNumbers[1];
+                const currentValue = parseInt(responsesEl.textContent);
+                if (Math.random() < 0.3) { // 30% chance to update
+                    responsesEl.textContent = currentValue + 1;
+                }
+            }
+        }, 10000);
+    </script>
 
-    <label>
-      <input type="radio" name="pregunta5" value="3">
-      <img src="./assets/3-removebg-preview.png" alt="3">
-    </label>
 
-    <label>
-      <input type="radio" name="pregunta5" value="4">
-      <img src="./assets/4-removebg-preview.png" alt="4">
-    </label>
 
-    <label>
-      <input type="radio" name="pregunta5" value="5">
-      <img src="./assets/5-removebg-preview.png" alt="5">
-    </label>
-  </div>
+    <!--<h1>Encuesta sobre la escuela</h1>
+    <form>
+        <p>Escribe tu nombre y numero de control</p><br>
+        <input type="text" placeholder="Nombre"> <input type="text" placeholder="Numero de control">
 
-  <input type="submit" value="Enviar">
-</form>
+    <div class="preg">
+        <p>¿Qué tanto te agrada la comida de la cafetería?</p>
+
+        <label>
+          <input type="radio" name="pregunta" value="1">
+          <img src="./assets/1-removebg-preview.png" alt="1">
+        </label>
+
+        <label>
+          <input type="radio" name="pregunta" value="2">
+          <img src="./assets/2-removebg-preview.png" alt="2">
+        </label>
+
+        <label>
+          <input type="radio" name="pregunta" value="3">
+          <img src="./assets/3-removebg-preview.png" alt="3">
+        </label>
+
+        <label>
+          <input type="radio" name="pregunta" value="4">
+          <img src="./assets/4-removebg-preview.png" alt="4">
+        </label>
+
+        <label>
+          <input type="radio" name="pregunta" value="5">
+          <img src="./assets/5-removebg-preview.png" alt="5">
+        </label>
+      </div>
+      <div class="preg">
+        <p>¿Qué tanto te agrada la comida de la cafetería?</p>
+
+        <label>
+          <input type="radio" name="pregunta2" value="1">
+          <img src="./assets/1-removebg-preview.png" alt="1">
+        </label>
+
+        <label>
+          <input type="radio" name="pregunta2" value="2">
+          <img src="./assets/2-removebg-preview.png" alt="2">
+        </label>
+
+        <label>
+          <input type="radio" name="pregunta2" value="3">
+          <img src="./assets/3-removebg-preview.png" alt="3">
+        </label>
+
+        <label>
+          <input type="radio" name="pregunta2" value="4">
+          <img src="./assets/4-removebg-preview.png" alt="4">
+        </label>
+
+        <label>
+          <input type="radio" name="pregunta2" value="5">
+          <img src="./assets/5-removebg-preview.png" alt="5">
+        </label>
+      </div>
+       <div class="preg">
+        <p>¿Qué tanto te agrada la comida de la cafetería?</p>
+
+        <label>
+          <input type="radio" name="pregunta3" value="1">
+          <img src="./assets/1-removebg-preview.png" alt="1">
+        </label>
+
+        <label>
+          <input type="radio" name="pregunta3" value="2">
+          <img src="./assets/2-removebg-preview.png" alt="2">
+        </label>
+
+        <label>
+          <input type="radio" name="pregunta3" value="3">
+          <img src="./assets/3-removebg-preview.png" alt="3">
+        </label>
+
+        <label>
+          <input type="radio" name="pregunta3" value="4">
+          <img src="./assets/4-removebg-preview.png" alt="4">
+        </label>
+
+        <label>
+          <input type="radio" name="pregunta3" value="5">
+          <img src="./assets/5-removebg-preview.png" alt="5">
+        </label>
+      </div>
+       <div class="preg">
+        <p>¿Qué tanto te agrada la comida de la cafetería?</p>
+
+        <label>
+          <input type="radio" name="pregunta4" value="1">
+          <img src="./assets/1-removebg-preview.png" alt="1">
+        </label>
+
+        <label>
+          <input type="radio" name="pregunta4" value="2">
+          <img src="./assets/2-removebg-preview.png" alt="2">
+        </label>
+
+        <label>
+          <input type="radio" name="pregunta4" value="3">
+          <img src="./assets/3-removebg-preview.png" alt="3">
+        </label>
+
+        <label>
+          <input type="radio" name="pregunta4" value="4">
+          <img src="./assets/4-removebg-preview.png" alt="4">
+        </label>
+
+        <label>
+          <input type="radio" name="pregunta4" value="5">
+          <img src="./assets/5-removebg-preview.png" alt="5">
+        </label>
+      </div>
+       <div class="preg">
+        <p>¿Qué tanto te agrada la comida de la cafetería?</p>
+
+        <label>
+          <input type="radio" name="pregunta5" value="1">
+          <img src="./assets/1-removebg-preview.png" alt="1">
+        </label>
+
+        <label>
+          <input type="radio" name="pregunta5" value="2">
+          <img src="./assets/2-removebg-preview.png" alt="2">
+        </label>
+
+        <label>
+          <input type="radio" name="pregunta5" value="3">
+          <img src="./assets/3-removebg-preview.png" alt="3">
+        </label>
+
+        <label>
+          <input type="radio" name="pregunta5" value="4">
+          <img src="./assets/4-removebg-preview.png" alt="4">
+        </label>
+
+        <label>
+          <input type="radio" name="pregunta5" value="5">
+          <img src="./assets/5-removebg-preview.png" alt="5">
+        </label>
+      </div>
+
+      <input type="submit" value="Enviar">
+    </form>-->
 
 </body>
 </html>

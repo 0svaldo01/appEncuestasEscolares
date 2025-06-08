@@ -15,7 +15,7 @@ namespace appEncuestasEscolares.Controllers
 
         public IActionResult Index()
         {
-            var data = Context.Encuestas.OrderBy(x => x.Titulo);
+            var data = Context.Encuestas.OrderBy(x => x.NombreEncuesta);
             
             return View(data);
         }
@@ -28,7 +28,7 @@ namespace appEncuestasEscolares.Controllers
         [HttpPost]
         public IActionResult AgregarEncuestas(Encuestas e)
         {
-            var existe = Context.Encuestas.Any(x => x.Titulo == e.Titulo);
+            var existe = Context.Encuestas.Any(x => x.NombreEncuesta == e.NombreEncuesta);
             if (existe)
             {
                 ModelState.AddModelError("", "Ya existe");
@@ -37,8 +37,18 @@ namespace appEncuestasEscolares.Controllers
             {
                 Context.Add(e);
                 Context.SaveChanges();
-                return Redirect("~/Encuestas/Encuestas");
+                return Redirect("~/Encuestas/Index");
             }
+            return View();
+        }
+        [HttpGet]
+        public IActionResult AgregarPreguntas()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult AgregarPreguntas(Preguntas p)
+        {
             return View();
         }
 

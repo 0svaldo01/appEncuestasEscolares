@@ -11,5 +11,7 @@ public partial class Preguntas
 
     public int IdEncuesta { get; set; }
 
+    public sbyte Estado { get; set; }
+
     public virtual Encuestas IdEncuestaNavigation { get; set; } = null!;
 }

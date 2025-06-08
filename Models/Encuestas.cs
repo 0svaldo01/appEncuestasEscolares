@@ -7,7 +7,9 @@ public partial class Encuestas
 {
     public int IdEncuesta { get; set; }
 
-    public string Titulo { get; set; } = null!;
+    public string NombreEncuesta { get; set; } = null!;
+
+    public sbyte Estado { get; set; }
 
     public virtual ICollection<Preguntas> Preguntas { get; set; } = new List<Preguntas>();
 }

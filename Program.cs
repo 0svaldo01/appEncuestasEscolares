@@ -9,4 +9,9 @@ var app = builder.Build();
 
 app.MapDefaultControllerRoute();
 app.UseStaticFiles();
+app.MapControllerRoute(
+      name: "areas",
+      pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+    );
+
 app.Run();

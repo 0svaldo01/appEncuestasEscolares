@@ -3,17 +3,21 @@ using System.Collections.Generic;
 
 namespace appEncuestasEscolares.Models;
 
-public partial class Preguntas
+public partial class RespuestasEncuesta
 {
     public int Id { get; set; }
 
     public int EncuestaId { get; set; }
 
-    public string TextoPregunta { get; set; } = null!;
+    public string NumeroControl { get; set; } = null!;
 
-    public int Orden { get; set; }
+    public string NombreEstudiante { get; set; } = null!;
 
-    public DateTime? FechaCreacion { get; set; }
+    public int AplicadaPorId { get; set; }
+
+    public DateTime? FechaRespuesta { get; set; }
+
+    public virtual Usuarios AplicadaPor { get; set; } = null!;
 
     public virtual Encuestas Encuesta { get; set; } = null!;
 

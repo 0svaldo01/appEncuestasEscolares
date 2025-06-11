@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Encuesta</title>
+    <link rel="stylesheet" href="~/css/estiloEncuesta.css" asp-append-version="true">
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="nav-brand">
+                <i class="fas fa-poll brand-icon"></i>
+                <h1 class="brand-title">Encuestas ITESRC</h1>
+            </div>
+            <nav class="nav-menu">
+                <a href="~/Encuestador/Home" class="nav-link active">
+                    <i class="fas fa-chart-bar"></i>
+                    Panel
+                </a>
+                <a>
+                    <i class="fa-solid fa-clipboard-list"></i>
+                    Ver Encuestas
+                </a>
+                <a href="~/Encuestador/Home/AgregarEncuesta" class="nav-link">
+                    <i class="fas fa-plus-circle"></i>
+                    Crear Encuesta
+                </a>
+                <div class="user-menu">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Usuario</span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+ @RenderBody()
+
+    <script>
+
+
+        // eliminar encuesta funcion
+        document.addEventListener('click', (e) => {
+            if (e.target.closest('.btn-remove')) {
+                e.target.closest('.question-item').remove();
+                // Update question numbers
+                document.querySelectorAll('.question-number').forEach((num, index) => {
+                    num.textContent = index + 1;
+                });
+            }
+        });
+
+        // simular actualizaciones en tiempo real
+        setInterval(() => {
+            const statNumbers = document.querySelectorAll('.stat-number');
+            if (statNumbers.length > 1) {
+                const responsesEl = statNumbers[1];
+                const currentValue = parseInt(responsesEl.textContent);
+                if (Math.random() < 0.3) { // 30% chance to update
+                    responsesEl.textContent = currentValue + 1;
+                }
+            }
+        }, 10000);
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,18 @@
+﻿@model IEnumerable<appEncuestasEscolares.Models.Encuestas>
+
+@{
+    Layout = "MainLayout";
+}
+<p>Solo las encuestas sin aplicar pueden ser editadas</p>
+
+    <ul>
+        @foreach(var en in Model)
+        {
+         <li>
+            <p>@en.Titulo</p>
+            <p>@en.CreadoPor.Nombre</p>
+            <a href = "~/Encuestador/Home/AgregarPreguntas/@en.Id" class="agregar">agregar preguntas</a> 
+            <a href = "~/Encuestador/Home/EliminarEncuesta/@en.Id" class="eliminar">eliminar</a>
+          </li>
+        }
+    </ul>

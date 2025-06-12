@@ -2,6 +2,7 @@
 using appEncuestasEscolares.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualBasic;
 
 namespace appEncuestasEscolares.Areas.Encuestador.Controllers
@@ -22,7 +23,25 @@ namespace appEncuestasEscolares.Areas.Encuestador.Controllers
         {
             return View();
         }
+        public IActionResult ListaEncuestas()
+        {
+            var idClaim = User.FindFirst("Id")?.Value;
 
+            if (int.TryParse(idClaim, out int idUsuario))
+            {
+                var usuario = Context.Usuarios.FirstOrDefault(u => u.Id == idUsuario);
+
+                if (usuario == null)
+                {
+                    return RedirectToAction("Login", "Login");
+                }
+                var encuestasus = Context.Encuestas.OrderBy(x => x.Titulo).Where(x => x.CreadoPorId == usuario.Id && x.Aplicada == false && x.Aplicada == false).Include(x => x.CreadoPor);
+                return View(encuestasus);
+
+            }
+
+            return RedirectToAction("Login", "Login");
+        }
         [HttpGet]
         public IActionResult AgregarEncuesta()
         {
@@ -56,19 +75,18 @@ namespace appEncuestasEscolares.Areas.Encuestador.Controllers
                 FechaCreacion = DateTime.Now,
                 Eliminada = false,
                 Aplicada = false
-                
+
             };
 
-            
 
             //vm.ListaPregCreando.Where(p => !string.IsNullOrWhiteSpace(p.TextoPregunta)))
             //{
             //    encuesta.Preguntas.Add(new Preguntas
             //    {
             //        //TextoPregunta = TextoPregunta,
-                    
+
             //        FechaCreacion = DateTime.Now
-                    
+
             //    });
             //}
 
@@ -77,11 +95,25 @@ namespace appEncuestasEscolares.Areas.Encuestador.Controllers
                 Context.Encuestas.Add(encuesta);
                 Context.SaveChanges();
 
+
+
+
                 return Redirect("~/Encuestador/Home");
             }
 
 
             return View(vm);
+        }
+
+        [HttpGet]
+        public IActionResult AgregarPreguntas()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult AgregarPreguntas(Preguntas p)
+        {
+            return View();
         }
     }
 }

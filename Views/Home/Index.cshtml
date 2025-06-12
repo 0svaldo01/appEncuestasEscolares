@@ -1,2 +1,19 @@
 ﻿Nada, planeo que aqui se contesten las encuestas
  
+@model IEnumerable<appEncuestasEscolares.Models.Encuestas>
+
+@{
+    
+}
+<p>Solo las encuestas sin aplicar pueden ser editadas</p>
+
+<ul>
+    @foreach (var en in Model)
+    {
+        <li>
+            <p>@en.Titulo</p>
+            <p>Creado por:<span>@en.CreadoPor.Nombre</span></p>
+            <a href="~/Encuestador/Home/ContestarEncuesta/@en.Id" class="agregar">Contestar Encuesta</a>   
+        </li>
+    }
+</ul>

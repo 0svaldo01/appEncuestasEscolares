@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Encuesta</title>
+    <style>
+        * {
+            background-color: #E6ECF0;
+        }
+
+        input[type="radio"] {
+            display: none;
+        }
+
+        label img {
+            width: 50px;
+            cursor: pointer;
+            opacity: 0.5;
+            transition: 0.2s;
+        }
+
+        input[type="radio"]:checked + img {
+            opacity: 1;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Encuesta sobre la escuela</h1>
+    <form>
+        <p>Escribe tu nombre y numero de control</p><br>
+        <input type="text" placeholder="Nombre"> <input type="text" placeholder="Numero de control">
+
+        <div class="preg">
+            <p>¿Qué tanto te agrada la comida de la cafetería?</p>
+
+            <label>
+                <input type="radio" name="pregunta" value="1">
+                <img src="./assets/1-removebg-preview.png" alt="1">
+            </label>
+
+            <label>
+                <input type="radio" name="pregunta" value="2">
+                <img src="./assets/2-removebg-preview.png" alt="2">
+            </label>
+
+            <label>
+                <input type="radio" name="pregunta" value="3">
+                <img src="./assets/3-removebg-preview.png" alt="3">
+            </label>
+
+            <label>
+                <input type="radio" name="pregunta" value="4">
+                <img src="./assets/4-removebg-preview.png" alt="4">
+            </label>
+
+            <label>
+                <input type="radio" name="pregunta" value="5">
+                <img src="./assets/5-removebg-preview.png" alt="5">
+            </label>
+        </div>
+
+
+        <input type="submit" value="Enviar">
+    </form>
+
+</body>
+</html>
+

@@ -51,69 +51,93 @@ namespace appEncuestasEscolares.Areas.Encuestador.Controllers
         [HttpPost]
         public IActionResult AgregarEncuesta(CrearEncuestasViewModel vm)
         {
-            var existe = Context.Encuestas.Any(x => x.Titulo == vm.Titulo);
 
-            if (existe)
+            var idClaim = User.FindFirst("Id")?.Value;
+            if (int.TryParse(idClaim, out int idUsuario))
             {
-                ModelState.AddModelError("", "La encuesta ya esta registrada");
+                var usuario = Context.Usuarios.FirstOrDefault(u => u.Id == idUsuario);
+
+
+                if (usuario == null)
+                {
+                    return RedirectToAction("Login", "Login");
+                }
+
+
+                var existe = Context.Encuestas.Any(x => x.Titulo == vm.Titulo);
+
+                if (existe)
+                {
+                    ModelState.AddModelError("", "La encuesta ya esta registrada");
+                }
+
+                if (string.IsNullOrEmpty(vm.Titulo))
+                {
+                    ModelState.AddModelError("", "Agregue un titulo para la encuesta");
+                }
+                if (string.IsNullOrEmpty(vm.Descripcion))
+                {
+                    ModelState.AddModelError("", "Agregue una descripcion para la encuesta");
+                }
+
+                var encuesta = new Encuestas
+                {
+                    Titulo = vm.Titulo,
+                    Descripcion = vm.Descripcion,
+                    CreadoPorId = 1, 
+                    FechaCreacion = DateTime.Now,
+                    Eliminada = false,
+                    Aplicada = false
+
+                };
+
+                if (ModelState.IsValid)
+                {
+                    Context.Encuestas.Add(encuesta);
+                    Context.SaveChanges();
+                    return Redirect("~/Encuestador/Home/Index");
+                }
+
+                return View(vm);
             }
-
-            if (string.IsNullOrEmpty(vm.Titulo))
-            {
-                ModelState.AddModelError("", "Agregue un titulo para la encuesta");
-            }
-            if (string.IsNullOrEmpty(vm.Descripcion))
-            {
-                ModelState.AddModelError("", "Agregue una descripcion para la encuesta");
-            }
-
-            var encuesta = new Encuestas
-            {
-                Titulo = vm.Titulo,
-                Descripcion = vm.Descripcion,
-                CreadoPorId = 1, //por mientras
-                FechaCreacion = DateTime.Now,
-                Eliminada = false,
-                Aplicada = false
-
-            };
-
-
-            //vm.ListaPregCreando.Where(p => !string.IsNullOrWhiteSpace(p.TextoPregunta)))
-            //{
-            //    encuesta.Preguntas.Add(new Preguntas
-            //    {
-            //        //TextoPregunta = TextoPregunta,
-
-            //        FechaCreacion = DateTime.Now
-
-            //    });
-            //}
-
-            if (ModelState.IsValid)
-            {
-                Context.Encuestas.Add(encuesta);
-                Context.SaveChanges();
-
-
-
-
-                return Redirect("~/Encuestador/Home");
-            }
-
-
-            return View(vm);
+            return RedirectToAction("Login", "Login");
         }
 
         [HttpGet]
-        public IActionResult AgregarPreguntas()
+        public IActionResult AgregarPreguntas(int id)
         {
-            return View();
+            var vm = new CrearPreguntasViewModel
+            {
+                EncuestaId = id,
+                Preguntas = new List<string>(new string[10])
+            };
+            return View(vm);
         }
         [HttpPost]
-        public IActionResult AgregarPreguntas(Preguntas p)
+        public IActionResult AgregarPreguntas(CrearPreguntasViewModel vm)
         {
-            return View();
+            int orden = 1;
+
+            foreach (var texto in vm.Preguntas)
+            {
+                if (!string.IsNullOrWhiteSpace(texto))
+                {
+                    var pregunta = new Preguntas
+                    {
+                        EncuestaId = vm.EncuestaId,
+                        TextoPregunta = texto,
+                        Orden = orden++,
+                        FechaCreacion = DateTime.Now
+                    };
+
+                    Context.Preguntas.Add(pregunta);
+                }
+            }
+
+            Context.SaveChanges();
+
+            return View(vm);
         }
+      
     }
 }

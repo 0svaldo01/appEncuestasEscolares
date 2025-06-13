@@ -1,4 +1,6 @@
-﻿namespace appEncuestasEscolares.Areas.Encuestador.Models.ViewModels
+﻿using appEncuestasEscolares.Models;
+
+namespace appEncuestasEscolares.Areas.Encuestador.Models.ViewModels
 {
     public class CrearEncuestasViewModel
     {
@@ -6,7 +8,6 @@
 
         public string? Descripcion { get; set; }
 
-        public string TextoPregunta { get; set; } = "";
     }
-
+    
 }

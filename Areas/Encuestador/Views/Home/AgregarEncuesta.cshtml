@@ -1,5 +1,5 @@
 ﻿@model appEncuestasEscolares.Areas.Encuestador.Models.ViewModels.CrearEncuestasViewModel
-
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     Layout = "MainLayout";
 }
@@ -16,28 +16,14 @@
             <form method="post" action="~/Encuestador/Home/AgregarEncuesta" class="survey-form">
                 <div class="form-group">
                     <label for="survey-name" class="form-label">Nombre de la Encuesta</label>
-                    <input type="text" id="survey-name" class="form-input" name="Titulo" placeholder="Ej: Satisfacción con la Cafetería" required>
+                    <input type="text" id="survey-name" class="form-input" asp-for="Titulo" placeholder="Ej: Satisfacción con la Cafetería" required>
                 </div>
 
                 <div class="form-group">
                     <label for="survey-description" class="form-label">Descripción</label>
-                    <textarea id="survey-description" class="form-textarea" name="Descripcion" placeholder="Describe el objetivo de esta encuesta..." required></textarea>
+                    <textarea id="survey-description" class="form-textarea" asp-for="Descripcion" placeholder="Describe el objetivo de esta encuesta..." required></textarea>
                 </div>
-
-                <div class="questions-section">
-                    <div class="section-header-inline">
-                        <h3 class="subsection-title">Preguntas</h3>
-                    </div>
-
-                    <div class="question-list">
-                        <div class="question-item">
-                            <div class="question-header">
-                                <span class="question-number">1</span>
-                            </div>
-                        <input type="text" name="Preguntas" class="form-input" placeholder="Escribe tu pregunta aquí..." required>
-                        </div>
-                    </div>
-                </div>
+           
 
                 <div class="form-actions">
                     <label style="color:red">@Html.ValidationSummary()</label>

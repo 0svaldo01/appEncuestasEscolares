@@ -1,71 +1,29 @@
-﻿@model appEncuestasEscolares.Models.Preguntas
+﻿@model appEncuestasEscolares.Areas.Encuestador.Models.ViewModels.CrearPreguntasViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     Layout = "MainLayout";
 }
 
 <div class="question-list">
 
-    
-    <div class="question-item">
-        <div class="question-header">
-            <span class="question-number">1</span>
-        </div>
-        <input type="text" name="Preguntas" class="form-input" placeholder="Escribe tu pregunta aquí..." required>
-    </div>
-    <div class="question-item">
-        <div class="question-header">
-            <span class="question-number">2</span>
-        </div>
-        <input type="text" name="Preguntas" class="form-input" placeholder="Escribe tu pregunta aquí..." required>
-    </div>
-    <div class="question-item">
-        <div class="question-header">
-            <span class="question-number">3</span>
-        </div>
-        <input type="text" name="Preguntas" class="form-input" placeholder="Escribe tu pregunta aquí..." required>
-    </div>
-    <div class="question-item">
-        <div class="question-header">
-            <span class="question-number">4</span>
-        </div>
-        <input type="text" name="Preguntas" class="form-input" placeholder="Escribe tu pregunta aquí..." required>
-    </div>
-    <div class="question-item">
-        <div class="question-header">
-            <span class="question-number">5</span>
-        </div>
-        <input type="text" name="Preguntas" class="form-input" placeholder="Escribe tu pregunta aquí..." required>
-    </div>
-    <div class="question-item">
-        <div class="question-header">
-            <span class="question-number">6</span>
-        </div>
-        <input type="text" name="Preguntas" class="form-input" placeholder="Escribe tu pregunta aquí..." required>
-    </div>
-       <div class="question-item">
-        <div class="question-header">
-            <span class="question-number">7</span>
-        </div>
-        <input type="text" name="Preguntas" class="form-input" placeholder="Escribe tu pregunta aquí..." required>
-    </div>
-       <div class="question-item">
-        <div class="question-header">
-            <span class="question-number">8</span>
-        </div>
-        <input type="text" name="Preguntas" class="form-input" placeholder="Escribe tu pregunta aquí..." required>
-           <div class="question-item">
-        <div class="question-header">
-            <span class="question-number">9</span>
-        </div>
-        <input type="text" name="Preguntas" class="form-input" placeholder="Escribe tu pregunta aquí..." required>
-           <div class="question-item">
-        <div class="question-header">
-            <span class="question-number">10</span>
-        </div>
-        <input type="text" name="Preguntas" class="form-input" placeholder="Escribe tu pregunta aquí..." required>
 
-    </div>
-    </div>
-    </div>
+<form action="~/Encuestador/Home/AgregarPreguntas" method="post">
+
+    <input type="hidden" asp-for="EncuestaId" />
+
+        <div class="question-list">
+            @for (int i = 0; i < 10; i++)
+            {
+                <div class="question-item">
+                    <div class="question-header">
+                        <span class="question-number">@((i + 1).ToString())</span>
+                    </div>
+                    <input type="text" name="Preguntas" class="form-input" placeholder="Escribe tu pregunta aquí..."  />
+                </div>
+            }
+        </div>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+</form>
+    
     
 </div>

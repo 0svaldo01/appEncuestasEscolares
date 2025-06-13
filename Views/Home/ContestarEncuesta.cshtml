@@ -3,32 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <title>Encuesta</title>
-    <style>
-        * {
-            background-color: #E6ECF0;
-        }
-
-        input[type="radio"] {
-            display: none;
-        }
-
-        label img {
-            width: 50px;
-            cursor: pointer;
-            opacity: 0.5;
-            transition: 0.2s;
-        }
-
-        input[type="radio"]:checked + img {
-            opacity: 1;
-            border-radius: 10px;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+    <header>
+        <h1>Encuesta escolar</h1>
+        <p>Tu opinion es muy importante para mejorar nuestro entorno escolar.</p>
+    </header>
 
-    <h1>Encuesta sobre la escuela</h1>
-    <form>
+    <main>
+        <from id="fromEncuesta">
+            <div class="pregunta">
+                <label for="p1">Que tan satisfecho estas con la limpieza de las aulas?</label>
+                <select id="p1" name="p1" required>
+                    <option value="" disabled selected>Selecciona una opción</option>
+                    <option value="5">Muy Satisfecho</option>
+                    <option value="4">Satisfecho</option>
+                    <option value="3">Neutral</option>
+                    <option value="2">Insatisfecho</option>
+                    <option value="1">Muy Insatisfecho</option>
+                </select>
+            </div>
+            <div>
+                <label for="p2">Que tan satisfecho estas con la comida de la cafetería?</label>
+                <select id="p2" name="p2" required>
+                    <option value="" disabled selected>Selecciona una opción</option>
+                    <option value="5">Muy Satisfecho</option>
+                    <option value="4">Satisfecho</option>
+                    <option value="3">Neutral</option>
+                    <option value="2">Insatisfecho</option>
+                    <option value="1">Muy Insatisfecho</option>
+                </select>
+            </div>
+            <div class="pregunta">
+                <label for="comentarios">Comentarios adicionales:</label>
+                <textarea id="comentarios" name="comentarios" rows="4" placeholder="Escribe aquí tus sugerencias..."></textarea>
+            </div>
+            <button type="submit">Enviar Encuesta</button>
+        </from>
+    </main>
+    <footer>
+        <p>&copy; 2025 Encusta Escolar - TECNM</p>
+    </footer>
+    @*  <form>
         <p>Escribe tu nombre y numero de control</p><br>
         <input type="text" placeholder="Nombre"> <input type="text" placeholder="Numero de control">
 
@@ -64,7 +81,7 @@
 
         <input type="submit" value="Enviar">
     </form>
-
+ *@
 </body>
 </html>
 

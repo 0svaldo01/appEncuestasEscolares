@@ -1,7 +1,155 @@
 html {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
-.login h1{
+/* Aplica a todo el cuerpo con clase "login" */
+body.login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #f0f2f5;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+}
+
+/* Contenedor principal del formulario */
+.from-cont {
+    background: #fff;
+    padding: 2rem 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+    /* Encabezado */
+    .from-cont h1 {
+        margin-bottom: 1.5rem;
+        text-align: center;
+        color: #333;
+    }
+
+/* Grupo de campos */
+.from-grupo {
+    margin-bottom: 1.5rem;
+}
+
+    /* Etiquetas de los campos */
+    .from-grupo label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: #555;
+        font-weight: 600;
+    }
+
+    /* Campos de texto */
+    .from-grupo input[type="text"],
+    .from-grupo input[type="password"] {
+        width: 100%;
+        padding: 0.7rem;
+        font-size: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        box-sizing: border-box;
+        transition: border 0.3s ease;
+    }
+
+    .from-grupo input:focus {
+        border-color: #007bff;
+        outline: none;
+    }
+
+/* Contenedor del botón y mensaje de error */
+.botonera {
+    text-align: center;
+}
+
+    /* Botón de envío */
+    .botonera input[type="submit"] {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 0.6rem 2rem;
+        border-radius: 8px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+        .botonera input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+/* Mensaje de error */
+#error {
+    color: red;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+/*
+    EMPIEZA ESTILO DE CONTESTAR ENCUESTA
+*/
+header {
+    text-align: center;
+    margin-bottom:30px;
+
+}
+ContestarEncusta.h1 {
+    font-size: 2.5em;
+    color:#1a73e8;
+}
+ContestarEncuesta.main {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.pregunta {
+    margin-bottom: 20px;
+}
+ContestarEncuesta.label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+
+}
+ContestarEncuesta.select, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+ContestarEncuesta.button {
+    background-color: #1a73e8;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+ContestarEncuesta.button:hover {
+    background-color: #155ab6;
+}
+ContestarEncuesta.footer {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 0.9rem;
+    color: #777;
+}
+/*
+    TERMINA ESTILO DE CONTESTAR ENCUESTA
+*/
+
+
+
+
+/*.login h1{
     margin-top: 0;
     color: black;
     text-align: center;
@@ -96,11 +244,11 @@ html {
     border: 2px solid #49724B;
     color: #49724B;
     
-}
+}*/
 
 
 /*ADMIN LAYOUT*/
-.adminLayout nav {
+/*.adminLayout nav {
     box-sizing: border-box;
     background-color: #49724B;
     width: 100%;
@@ -113,7 +261,7 @@ html {
         color: white;
         font-size: 1.3em;
         padding-left: 20px;
-    }
+    }*/
 
     /*INDEX DE AUTORES*/
 .indexAutores {
@@ -330,4 +478,65 @@ header, .head {
     color: #49724B;
     border: none;
 }
+/* estilos responsivos */
+@media (max-width: 992px) {
+    .apply-grid {
+        grid-template-columns: 1fr;
+    }
 
+    .mobile-preview {
+        margin-top: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .header .container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .nav-menu {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .survey-status {
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 0.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-container {
+        padding: 1.5rem;
+    }
+
+    .section-header-inline {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .form-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+        .form-actions .btn {
+            width: 100%;
+        }
+}

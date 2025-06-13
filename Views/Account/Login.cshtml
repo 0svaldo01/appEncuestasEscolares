@@ -7,22 +7,27 @@
     <title>Iniciar Sesión</title>
 </head>
 <body class="login">
-    <header></header>
 
-    <main>
+
+    <main class="from-cont">
 
         <form method="post" action="~/Account/Login" class="form">
             <div>
                 <h1>Iniciar sesión</h1>
+                <div class="from-grupo">
+                    <label class="txtNumC">Correo electronico</label>
+                  <input type="text" required name="user" id="txtNumC"
+                      placeholder="correo@ejemplo.com"/>
+                    
+                </div>
+                <div class="from-grupo">
+                    <label for="txtPassword">Contraseña</label>
+                    <input type="password" required name="password" id="txtPassword" placeholder="Contraseña" />
 
-
-                <input type="text" required="required" name="user" id="txtNumC" placeholder="Email" />
-
-                <input type="password" required="required" name="password" id="txtPassword" placeholder="Contraseña" />
-
+                </div>
+                
                 <div class="botonera">
-                    <p style="color:red;" id="error">
-                        @Html.ValidationSummary()
+                    <p id="error">@Html.ValidationSummary()
                     </p>
                     <input type="submit" value="Entrar" />
 
@@ -33,4 +38,4 @@
 
     </main>
 </body>
-</html>
+</html> 

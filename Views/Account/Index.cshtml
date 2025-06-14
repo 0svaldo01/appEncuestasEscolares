@@ -1,0 +1,43 @@
+﻿@model appEncuestasEscolares.Models.ViewModels.IndexLoginViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = "MainLayout";
+}
+<body class="login">
+
+
+    <main class="from-cont">
+
+        <form method="post" action="~/Account/Index" class="form">
+
+            <div>
+                <h1>Iniciar sesión</h1>
+                <div class="from-grupo">
+
+                    <label class="txtNumC">Correo electronico</label>
+                    <input type="text" required asp-for="CorreoElectronico" id="txtNumC"
+                           placeholder="correo@ejemplo.com" />
+
+                </div>
+                <div class="from-grupo">
+                    <label for="txtPassword">Contraseña</label>
+                    <input type="password" required asp-for="Contrasena" id="txtPassword" placeholder="Contraseña" />
+
+                </div>
+
+                <div class="botonera">
+
+                    @foreach (var em in Model.Errores)
+                    {
+                        <p id="error">@em</p>
+                    }
+
+                    <input type="submit" value="Entrar" />
+
+                </div>
+            </div>
+        </form>
+
+
+    </main>
+</body>

@@ -12,10 +12,10 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     .AddCookie(options =>
     {
         options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
-        options.SlidingExpiration = true;
-        options.LoginPath = "/Account/Login";
+///     options.SlidingExpiration = true;
+        options.LoginPath = "/Account/Index";
         options.LogoutPath = "/Account/Logout";
-        options.AccessDeniedPath = "/Account/AccessDenied";
+        options.AccessDeniedPath = "/Account/Logins/AccessDenied";
     });
 
 var app = builder.Build();
@@ -24,11 +24,12 @@ app.UseStaticFiles();
 
 app.MapDefaultControllerRoute();
 
-app.MapAreaControllerRoute(
+
+app.MapControllerRoute(
     name: "areas",
-    areaName: "Encuestador",
     pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
     );
+
 
 app.UseStaticFiles();
 app.Run();

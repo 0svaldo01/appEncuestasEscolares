@@ -1,0 +1,35 @@
+﻿@model appEncuestasEscolares.Areas.Encuestador.Models.ViewModels.IndexUsuariosViewModel
+@{
+    Layout = "MainLayout";
+}
+<body>
+    <h2>Lista de Usuarios</h2>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Fecha de Creación</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var u in Model.Usuarios)
+            { 
+
+            <tr>
+                <td>@u.Id</td>
+                <td>@u.Nombre</td>
+                <td>@u.Email</td>
+                
+                <td>@u.FechaCreacion</td>
+                <td><a>✏️</a></td>
+                <td><a>✏️</a></td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</body>

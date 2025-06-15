@@ -14,12 +14,16 @@
 <body>
     <header class="header">
         <div class="container">
-            <div class="nav-brand">
-                <i class="fas fa-poll brand-icon"></i>
-                <h1 class="brand-title">Encuestas ITESRC</h1>
-            </div>
-            <nav class="nav-menu">
-                <a href="~/Encuestador/Home" class="nav-link">
+
+
+                <div class="nav-brand">
+                    <i class="fas fa-poll brand-icon"></i>
+                    <h1 class="brand-title">Encuestas ITESRC</h1>
+                </div>
+            @if (User.IsInRole("Encuestador"))
+            {
+                <nav class="nav-menu">
+                    <a href="~/Encuestador/Home" class="nav-link">
                     <i class="fas fa-chart-bar"></i>
                     Panel
                 </a>
@@ -36,6 +40,7 @@
                     <span>Usuario</span>
                 </div>
             </nav>
+            }
         </div>
     </header>
 

@@ -26,12 +26,13 @@
                 </div>
 
                 <div class="botonera">
-
-                    @foreach (var em in Model.Errores)
+                    @if (Model.Errores != null)
                     {
-                        <p id="error">@em</p>
+                        @foreach (var em in Model.Errores)
+                        {
+                            <p id="error">@em</p>
+                        }
                     }
-
                     <input type="submit" value="Entrar" />
 
                 </div>

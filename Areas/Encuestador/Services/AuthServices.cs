@@ -8,23 +8,30 @@ namespace appEncuestasEscolares.Areas.Encuestador.Services
     {
         HttpClient cliente = new HttpClient();
 
-        static string accesoapi = "https://appencuestas.labsystec.net/api/auth/login";
+        static string accesoapi = "https://appencuestas.labsystec.net/api/";
 
         public AuthServices()
         {
             cliente.BaseAddress = new Uri(accesoapi);
         }
 
-        public async Task<UsuarioDTO> Login(string correoElectronico, string contrasena)
+        public async Task<UsuarioDTO> Login(string email, string password)
         {
             try
             {
-                var content = new StringContent(JsonConvert.SerializeObject(new { correoElectronico, contrasena }), Encoding.UTF8, "application/json");
-                HttpResponseMessage response = await cliente.PostAsync("auth", content);
+                var content = new StringContent(JsonConvert.SerializeObject(new { email, password }),
+                    Encoding.UTF8,
+                    "application/json");
+
+                HttpResponseMessage response = await cliente.PostAsync("auth/login", content);
+
+
                 if (response.IsSuccessStatusCode)
                 {
+                   
+
                     var data = await response.Content.ReadAsStringAsync();
-                    return JsonConvert.DeserializeObject<UsuarioDTO>(data);
+                    return  JsonConvert.DeserializeObject<UsuarioDTO>(data);
                 }
             }
             catch (Exception ex)
@@ -33,5 +40,6 @@ namespace appEncuestasEscolares.Areas.Encuestador.Services
             }
             return null;
         }
+
     }
 }

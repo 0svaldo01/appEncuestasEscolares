@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using appEncuestasEscolares.Areas.Encuestador.Services;
 using appEncuestasEscolares.Models.ViewModels;
+using appEncuestasEscolares.Areas.Encuestador.Models.DTOs;
 
 namespace appEncuestasEscolares.Controllers
 {
@@ -14,12 +15,14 @@ namespace appEncuestasEscolares.Controllers
 
         [HttpGet]
         public IActionResult Index()
+
         {
             var vm = new IndexLoginViewModel();
 
 
             return View(vm);
         }
+
         [HttpPost]
         public IActionResult Index(IndexLoginViewModel vm)
         {
@@ -27,11 +30,11 @@ namespace appEncuestasEscolares.Controllers
 
             if (string.IsNullOrEmpty(vm.CorreoElectronico))
             {
-                ModelState.AddModelError("", "El correo electronico no puede estar vacio");
+                vm.Errores.Add("El correo electronico no puede estar vacio");
             }
             if (string.IsNullOrEmpty(vm.Contrasena))
             {
-                ModelState.AddModelError("", "La contraseña no puede estar vacia");
+                vm.Errores.Add("La contraseña no puede estar vacia");
             }
 
             if (vm.Errores.Count() == 0)
@@ -41,35 +44,33 @@ namespace appEncuestasEscolares.Controllers
                 if (user != null)
                 {
                     List<Claim> claims = new List<Claim>()
-                    {
-                        new("Id",user.Id.ToString()),
-                        new(ClaimTypes.Name, user.Nombre),
-                        new(ClaimTypes.Email, user.Email),
-                        new(ClaimTypes.Role, user.Rol)
-                    };
+                  {
+                      new("Id",user.Id.ToString()),
+                      new(ClaimTypes.Name, user.Nombre),
+                      new(ClaimTypes.Email, user.Email),
+                      new(ClaimTypes.Role, user.Rol)
+                  };
 
-                    ClaimsIdentity identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                    ClaimsIdentity identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);                  
 
                     HttpContext.SignInAsync(new ClaimsPrincipal(identity), new AuthenticationProperties()
                     {
-                        IsPersistent = true
+                        IsPersistent = true,
                     });
+
 
                     if (user.Rol == "Encuestador")
                     {
                         return RedirectToAction("Index", "Home", new { area = "Encuestador" });
                     }
-
-
+                   
                 }
 
+                vm.Errores.Add("Las credenciales fueron incorrectas.");
+
             }
-
-            vm.Errores.Add("Email o Contraseña incorrectas");
-
             return View(vm);
         }
     }
-
 }
 

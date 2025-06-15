@@ -8,7 +8,6 @@ using Microsoft.VisualBasic;
 namespace appEncuestasEscolares.Areas.Encuestador.Controllers
 {
     [Area("Encuestador")]
-    [Authorize]
     public class HomeController : Controller
     {
         public EndbContext Context { get; }

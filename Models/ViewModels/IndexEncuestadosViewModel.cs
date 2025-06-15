@@ -1,11 +1,11 @@
 ﻿using appEncuestasEscolares.Areas.Encuestador.Models.DTOs;
 using appEncuestasEscolares.Models.DTOs;
 
-namespace appEncuestasEscolares.Areas.Encuestador.Models.ViewModels
+namespace appEncuestasEscolares.Models.ViewModels
 {
-    public class IndexUsuariosViewModel
+    public class IndexEncuestadosViewModel
     {
         public IEnumerable<UsuarioDTO>? Usuarios { get; set; }
-        
+        public IEnumerable<EncuestasDTO>? Encuestas { get; set; }
     }
 }

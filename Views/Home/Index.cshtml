@@ -1,19 +1,34 @@
-﻿Nada, planeo que aqui se contesten las encuestas
- 
-@model IEnumerable<appEncuestasEscolares.Models.Encuestas>
-
+﻿@model appEncuestasEscolares.Models.ViewModels.IndexEncuestadosViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     
 }
-<p>Solo las encuestas sin aplicar pueden ser editadas</p>
+<form>
+<p>Escribe tu numero de control:</p>
+<input  type="text"/>
+
+<select name="AplicadorId" required>
+    @foreach (var usuario in Model.Usuarios)
+    {
+        <option value="@usuario.Id">@usuario.Nombre</option>
+    }
+</select>
+
 
 <ul>
-    @foreach (var en in Model)
+    @foreach (var en in Model.Encuestas)
     {
         <li>
-            <p>@en.Titulo</p>
-            <p>Creado por:<span>@en.CreadoPor.Nombre</span></p>
-            <a href="~/Encuestador/Home/ContestarEncuesta/@en.Id" class="agregar">Contestar Encuesta</a>   
+            <p></p>
+            <p>Creado por: <span>.</span></p>
+            <a asp-controller="Home"
+               asp-action="ContestarEncuesta"
+               asp-route-id=""
+               class="agregar">Contestar Encuesta</a>
         </li>
     }
 </ul>
+
+<input type="submit" value="Enviar selección" />
+
+</form>

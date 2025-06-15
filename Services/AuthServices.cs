@@ -1,8 +1,8 @@
-﻿using appEncuestasEscolares.Areas.Encuestador.Models.DTOs;
+﻿using appEncuestasEscolares.Models.DTOs;
 using Newtonsoft.Json;
 using System.Text;
 
-namespace appEncuestasEscolares.Areas.Encuestador.Services
+namespace appEncuestasEscolares.Services
 {
     public class AuthServices
     {
@@ -28,10 +28,10 @@ namespace appEncuestasEscolares.Areas.Encuestador.Services
 
                 if (response.IsSuccessStatusCode)
                 {
-                   
+
 
                     var data = await response.Content.ReadAsStringAsync();
-                    return  JsonConvert.DeserializeObject<UsuarioDTO>(data);
+                    return JsonConvert.DeserializeObject<UsuarioDTO>(data);
                 }
             }
             catch (Exception ex)

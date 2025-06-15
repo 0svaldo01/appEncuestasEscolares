@@ -1,4 +1,4 @@
-﻿namespace appEncuestasEscolares.Areas.Encuestador.Models.DTOs
+﻿namespace appEncuestasEscolares.Models.DTOs
 {
     public class UsuarioDTO
     {

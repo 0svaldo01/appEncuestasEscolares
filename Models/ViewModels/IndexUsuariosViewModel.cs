@@ -2,9 +2,9 @@
 
 namespace appEncuestasEscolares.Models.ViewModels
 {
-    public class IndexEncuestadosViewModel
+    public class IndexUsuariosViewModel
     {
         public IEnumerable<UsuarioDTO>? Usuarios { get; set; }
-        public IEnumerable<EncuestasDTO>? Encuestas { get; set; }
+
     }
 }

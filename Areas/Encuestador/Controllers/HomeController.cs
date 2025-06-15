@@ -1,8 +1,12 @@
-﻿using appEncuestasEscolares.Areas.Encuestador.Models.ViewModels;
-using appEncuestasEscolares.Models;
+﻿using appEncuestasEscolares.Models;
+
+using appEncuestasEscolares.Models.DTOs;
+using appEncuestasEscolares.Models.ViewModels;
+using appEncuestasEscolares.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.VisualBasic;
 
 namespace appEncuestasEscolares.Areas.Encuestador.Controllers
@@ -10,13 +14,8 @@ namespace appEncuestasEscolares.Areas.Encuestador.Controllers
     [Area("Encuestador")]
     public class HomeController : Controller
     {
-        public EndbContext Context { get; }
 
-        public HomeController(EndbContext context)
-        {
-            Context = context;
-        }
-
+        EncuestasService encuestasService = new();
 
         public IActionResult Index()
         {
@@ -24,117 +23,66 @@ namespace appEncuestasEscolares.Areas.Encuestador.Controllers
         }
         public IActionResult ListaEncuestas()
         {
-            var idClaim = User.FindFirst("Id")?.Value;
+            //var idClaim = User.FindFirst("Id")?.Value;
 
-            if (int.TryParse(idClaim, out int idUsuario))
-            {
-                var usuario = Context.Usuarios.FirstOrDefault(u => u.Id == idUsuario);
+            //if (int.TryParse(idClaim, out int idUsuario))
+            //{
+            //    var usuario = Context.Usuarios.FirstOrDefault(u => u.Id == idUsuario);
 
-                if (usuario == null)
-                {
-                    return RedirectToAction("Login", "Login");
-                }
-                var encuestasus = Context.Encuestas.OrderBy(x => x.Titulo).Where(x => x.CreadoPorId == usuario.Id && x.Aplicada == false && x.Aplicada == false).Include(x => x.CreadoPor);
-                return View(encuestasus);
+            //    if (usuario == null)
+            //    {
+            //        return RedirectToAction("Login", "Login");
+            //    }
+            //    var encuestasus = Context.Encuestas.OrderBy(x => x.Titulo).Where(x => x.CreadoPorId == usuario.Id && x.Aplicada == false && x.Aplicada == false).Include(x => x.CreadoPor);
+            //    return View(encuestasus);
 
-            }
+            //}
 
-            return RedirectToAction("Login", "Login");
+            //return RedirectToAction("Login", "Login");
+            return View();
         }
+
+
         [HttpGet]
         public IActionResult AgregarEncuesta()
         {
-            var encues = new CrearEncuestasViewModel();
-            return View(encues);
-        }
-        [HttpPost]
-        public IActionResult AgregarEncuesta(CrearEncuestasViewModel vm)
-        {
-
-            var idClaim = User.FindFirst("Id")?.Value;
-            if (int.TryParse(idClaim, out int idUsuario))
-            {
-                var usuario = Context.Usuarios.FirstOrDefault(u => u.Id == idUsuario);
-
-
-                if (usuario == null)
-                {
-                    return RedirectToAction("Login", "Login");
-                }
-
-
-                var existe = Context.Encuestas.Any(x => x.Titulo == vm.Titulo);
-
-                if (existe)
-                {
-                    ModelState.AddModelError("", "La encuesta ya esta registrada");
-                }
-
-                if (string.IsNullOrEmpty(vm.Titulo))
-                {
-                    ModelState.AddModelError("", "Agregue un titulo para la encuesta");
-                }
-                if (string.IsNullOrEmpty(vm.Descripcion))
-                {
-                    ModelState.AddModelError("", "Agregue una descripcion para la encuesta");
-                }
-
-                var encuesta = new Encuestas
-                {
-                    Titulo = vm.Titulo,
-                    Descripcion = vm.Descripcion,
-                    CreadoPorId = 1, 
-                    FechaCreacion = DateTime.Now,
-                    Eliminada = false,
-                    Aplicada = false
-
-                };
-
-                if (ModelState.IsValid)
-                {
-                    Context.Encuestas.Add(encuesta);
-                    Context.SaveChanges();
-                    return Redirect("~/Encuestador/Home/Index");
-                }
-
-                return View(vm);
-            }
-            return RedirectToAction("Login", "Login");
-        }
-
-        [HttpGet]
-        public IActionResult AgregarPreguntas(int id)
-        {
-            var vm = new CrearPreguntasViewModel
-            {
-                EncuestaId = id,
-                Preguntas = new List<string>(new string[10])
-            };
+            EncuestasViewModel vm = new();
             return View(vm);
         }
         [HttpPost]
-        public IActionResult AgregarPreguntas(CrearPreguntasViewModel vm)
+        public async Task<IActionResult> AgregarEncuesta(EncuestasViewModel vm)
+        {
+           
+            var encuestacreada = await encuestasService.Create(vm.Encuesta);
+
+             return View(vm);
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> AgregarPreguntas(PreguntasViewModel vm)
+        {
+            var preguntaccreada = await 
+        }
+        [HttpPost]
+        public IActionResult AgregarPreguntas(PreguntasViewModel vm)
         {
             int orden = 1;
 
             foreach (var texto in vm.Preguntas)
             {
-                if (!string.IsNullOrWhiteSpace(texto))
-                {
+                
                     var pregunta = new Preguntas
                     {
-                        EncuestaId = vm.EncuestaId,
+                        EncuestaId = vm.IdEncuesta,
                         TextoPregunta = texto,
                         Orden = orden++,
                         FechaCreacion = DateTime.Now
                     };
 
-                    Context.Preguntas.Add(pregunta);
-                }
-            }
-
-            Context.SaveChanges();
-
+                   
+               
+            }          
             return View(vm);
         }
       

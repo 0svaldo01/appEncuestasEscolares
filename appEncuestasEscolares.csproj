@@ -8,9 +8,13 @@
 
   <ItemGroup>
     <Folder Include="Areas\Encuestador\Data\" />
+    <Folder Include="Areas\Encuestador\Models\DTOs\" />
+    <Folder Include="Areas\Encuestador\Models\ViewModels\" />
+    <Folder Include="Areas\Encuestador\Services\" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="12.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.16">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

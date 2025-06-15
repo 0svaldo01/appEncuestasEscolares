@@ -1,12 +1,13 @@
-﻿using appEncuestasEscolares.Areas.Encuestador.Models.ViewModels;
-using appEncuestasEscolares.Areas.Encuestador.Services;
+﻿using appEncuestasEscolares.Models.ViewModels;
+using appEncuestasEscolares.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace appEncuestasEscolares.Areas.Encuestador.Controllers
 {
     [Area("Encuestador")]
-    [Authorize]
+
+
     public class UsuarioController : Controller
     {
         UsuarioService usuarioservice = new();

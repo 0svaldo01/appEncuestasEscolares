@@ -1,7 +1,7 @@
-﻿using appEncuestasEscolares.Areas.Encuestador.Models.DTOs;
+﻿using appEncuestasEscolares.Models.DTOs;
 using Newtonsoft.Json;
 
-namespace appEncuestasEscolares.Areas.Encuestador.Services
+namespace appEncuestasEscolares.Services
 {
     public class UsuarioService
     {

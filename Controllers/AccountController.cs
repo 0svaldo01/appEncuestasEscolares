@@ -3,9 +3,8 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
-using appEncuestasEscolares.Areas.Encuestador.Services;
 using appEncuestasEscolares.Models.ViewModels;
-using appEncuestasEscolares.Areas.Encuestador.Models.DTOs;
+using appEncuestasEscolares.Services;
 
 namespace appEncuestasEscolares.Controllers
 {
